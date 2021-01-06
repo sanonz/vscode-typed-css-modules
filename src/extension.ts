@@ -2,6 +2,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as os from 'os'
 
 import { isFileEqualBuffer } from 'is-file-equal-buffer'
 
@@ -166,7 +167,21 @@ function renderTypedFile(css: string, filePath: string): Promise<Buffer> {
 
   return dtsCreator
     .create('', css)
-    .then(function onfulfilled({ formatted }) {
+    .then(function onfulfilled(content) {
+      const formatted =
+        [
+          'declare const styled: {',
+          '  locals: {',
+          ...content.contents.map((line) => '    ' + line),
+          '  }',
+          '  use(): void;',
+          '  unuse(): void;',
+          '  ref(): void;',
+          '  unref(): void;',
+          '};',
+          'export = styled;',
+        ].join(os.EOL) + os.EOL
+
       if (eslintEngine !== null) {
         // eslint-disable-next-line promise/no-nesting
         return eslintEngine

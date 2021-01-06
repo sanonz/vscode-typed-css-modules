@@ -29,13 +29,19 @@ const files: string[] = []
 suite('Typed CSS Modules', () => {
   vscode.window.showInformationMessage('Start all tests.')
 
-  const snapshot = Buffer.from(`declare const styles: {
-  readonly container: string
-  readonly row1: string
-  readonly row2: string
-  readonly row3: string
+  const snapshot = Buffer.from(`declare const styled: {
+  locals: {
+    readonly container: string
+    readonly row1: string
+    readonly row2: string
+    readonly row3: string
+  }
+  use(): void
+  unuse(): void
+  ref(): void
+  unref(): void
 }
-export = styles
+export = styled
 `)
 
   if (vscode.workspace.workspaceFolders === undefined) {
@@ -67,6 +73,7 @@ export = styles
         return readFile(generated)
       })
       .then((data) => {
+        console.log(data)
         return assert.ok(data.equals(snapshot))
       })
   }

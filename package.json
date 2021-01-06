@@ -1,5 +1,5 @@
 {
-  "name": "typed-css-modules-plugin",
+  "name": "vscode-typed-css-modules",
   "icon": "logo.png",
   "version": "0.3.1",
   "license": "MIT",
@@ -8,9 +8,10 @@
   "author": "xcodebuild <me@xcodebuild.com>",
   "contributors": [
     "Ignat Awwit <ignatius.awwit@gmail.com>",
-    "Daniel Clausmeyer <daniel@shwao.com>"
+    "Daniel Clausmeyer <daniel@shwao.com>",
+    "Sanonz <sanonz@126.com>"
   ],
-  "publisher": "awwit",
+  "publisher": "sanonz",
   "engines": {
     "vscode": ">=1.32.0"
   },
@@ -22,7 +23,7 @@
     "*"
   ],
   "repository": {
-    "url": "https://github.com/awwit/vscode-typed-css-modules"
+    "url": "https://github.com/sanonz/vscode-typed-css-modules"
   },
   "main": "dist/extension.js",
   "contributes": {
